@@ -26,7 +26,7 @@ function conda_autoenv() {
         echo "Creating conda environment '$ENV' from environment.yml ('$ENV' was not found using 'conda env list')"
         conda env create -q -f environment.yml
         echo "'$ENV' successfully created and will automatically activate in this directory"
-        source activate $ENV
+        conda activate $ENV
         if [ -e "requirements.txt" ]; then
           echo "Installing pip requirements from requirements.txt"
           pip install -q -r requirements.txt
@@ -45,7 +45,7 @@ function conda_autoenv() {
     pip freeze > $CONDA_ENV_ROOT/requirements.txt
     CONDA_ENV_ROOT=""
     echo "Successfully updated environment.yml and requirements.txt"
-    source deactivate
+    conda deactivate
     echo "Deactivated successfully"
   fi
 }
